@@ -1,8 +1,14 @@
+for _,v in pairs(game.CoreGui:GetChildren())do
+	if v.Name=='Kevin'then
+		v:Destroy()
+	end
+end
 local yes=true
 local no=false
 local IsLocal=yes
 local G=game
 local TweenService=G:GetService("TweenService");local Players=G:GetService("Players");local LocalPlayer;local StarterGui=G:GetService("StarterGui");local StarterPack=G:GetService("StarterPack");local StarterPlayer=G:GetService("StarterPlayer");local StarterCharacterScripts=StarterPlayer.StarterCharacterScripts;local StarterPlayerScripts=StarterPlayer.StarterPlayerScripts;local ReplicatedFirst=G:GetService("ReplicatedFirst");local ReplicatedStorage=G:GetService("ReplicatedStorage");local ServerScriptService=G:GetService("ServerScriptService");local ServerStorage=G:GetService("ServerStorage");local Lighting=G:GetService("Lighting");local SoundService=G:GetService("SoundService");local Teams=G:GetService("Teams");local UserInputService=G:GetService("UserInputService");local Mouse;local Character;local RunService=G:GetService('RunService');local Heartbeat=RunService.Heartbeat;local RenderStepped;local Stepped=RunService.Stepped;local In=Instance.new;local CFn=CFrame.new;local C3=Color3;local V3n=Vector3.new;local LRn=NumberRange.new;local TIn=TweenInfo.new;local CSKn=ColorSequenceKeypoint.new;local E=Enum;local w=wait;local tw=task.wait;local strf=string.find;local strs=string.split;local strgs=string.gsub;local strs=string.sub;local strb=string.byte;local strp=string.pack;local strup=string.unpack;local strl=string.len;local strr=string.reverse;local strgm=string.gmatch;local strm=string.match;local mrand=math.randomseed;local mp=math.pow;local mma=math.max;local mmi=math.min;local md=math.deg;local me=math.exp;local inf=math.huge;local rng=math.random;local mr=math.round;local mce=math.ceil;local mf=math.floor;local pi=math.pi;local ab=math.abs;local mco=math.cos;local ma=math.acos;local ml=math.log;local tI=table.insert;local tR=table.remove;local tF=table.find;local tCC=table.concat;local tU=table.unpack;local tC=table.clear;local tD=table.clone;local tF=table.freeze;local tB=table.create;local tS=table.sort;local tM=table.move
+
 if IsLocal==true then
 	LocalPlayer=Players.LocalPlayer
 	Mouse=LocalPlayer:GetMouse()
@@ -10,52 +16,31 @@ if IsLocal==true then
 	RenderStepped=RunService.RenderStepped
 end
 local Enabled=false
-local Kevin=Instance.new("ScreenGui",game.CoreGui)
-local Main=Instance.new("Frame",Kevin)
-local U=Instance.new("Frame",Main)
-local Utilities=Instance.new("ScrollingFrame",U)
-local ClearFog=Instance.new("TextButton",Utilities)
-local UIListLayout=Instance.new("UIListLayout",Utilities)
-local ClearLighting=Instance.new("TextButton",Utilities)
-local Search=Instance.new("TextBox",U)
-local C=Instance.new("Frame",Main)
-local Combat=Instance.new("ScrollingFrame",C)
-local UIListLayout_2=Instance.new("UIListLayout",Combat)
-local ClearLighting_2=Instance.new("TextButton",Combat)
-local Highlight=Instance.new("TextButton",Combat)
-local Bool=Instance.new("TextButton",Highlight)
-local Search_2=Instance.new("TextBox",C)
+
 --local Settings=Instance.new("Frame")
 
+local function CreateGui(Class,Name,Parent,Size,Position,AnchorPoint,BackgroundColor3,BorderSizePixel,BorderColor3)
+    local gui=In(Class,Parent)
+	gui.Position=Position
+    gui.Size=Size
+    gui.AnchorPoint=AnchorPoint
+    gui.BackgroundColor3=BackgroundColor3
+    gui.BorderSizePixel=BorderSizePixel
+	gui.BorderColor3=BorderColor3
+	return gui
+end
+--CreateGui(Class,Name,Parent,Size,Position,AnchorPoint,BackgroundColor3,BorderSizePixel,BorderColor3)
+
+
+local Kevin=Instance.new("ScreenGui",game.CoreGui)
 Kevin.Name="Kevin"
 Kevin.Enabled=false
 Kevin.ZIndexBehavior=Enum.ZIndexBehavior.Sibling
 
-Main.Name="Main"
-Main.AnchorPoint=Vector2.new(0.5,1)
-Main.BackgroundColor3=Color3.fromRGB(255,231,133)
-Main.BorderColor3=Color3.fromRGB(0,0,0)
-Main.BorderSizePixel=0
-Main.Position=UDim2.new(0.5,0,1,0)
-Main.Size=UDim2.new(1,0,0.25,0)
-
-U.Name="U"
-U.AnchorPoint=Vector2.new(0.5,0.5)
-U.BackgroundColor3=Color3.fromRGB(255,255,255)
-U.BackgroundTransparency=1.000
-U.BorderColor3=Color3.fromRGB(0,0,0)
-U.BorderSizePixel=0
-U.Position=UDim2.new(0.167,0,0.5,0)
-U.Size=UDim2.new(0.33,0,0.95,0)
-
-Utilities.Name="Utilities"
+local Main=CreateGui("Frame",'Main',Kevin,UDim2.new(1,0,0.25,0),UDim2.new(0.5,0,1,0),Vector2.new(0.5,1),Color3.fromRGB(255,231,133),0,Color3.fromRGB(0,0,0))
+local U=CreateGui("Frame",'U',Main,UDim2.new(0.33,0,0.95,0),UDim2.new(0.167,0,0.5,0),Vector2.new(0.5,0.5),Color3.fromRGB(255,255,255),0,Color3.fromRGB(0,0,0))
+local Utilities=CreateGui("ScrollingFrame","Utilities",U,UDim2.new(1,0,0.75,0),UDim2.new(0.5,0,1,0),Vector2.new(0.5,1),Color3.fromRGB(48,127,255),0,Color3.fromRGB(255,255,255))
 Utilities.Active=true
-Utilities.AnchorPoint=Vector2.new(0.5,1)
-Utilities.BackgroundColor3=Color3.fromRGB(48,127,255)
-Utilities.BorderColor3=Color3.fromRGB(255,255,255)
-Utilities.BorderSizePixel=0
-Utilities.Position=UDim2.new(0.5,0,1,0)
-Utilities.Size=UDim2.new(1,0,0.75,0)
 Utilities.BottomImage="rbxassetid://9794806639"
 Utilities.MidImage="rbxassetid://9794806504"
 Utilities.ScrollBarThickness=5
@@ -64,39 +49,20 @@ Utilities.CanvasSize=UDim2.new(0,0,2,0)
 Utilities.ScrollBarImageTransparency=.9
 Utilities.TopImage="rbxassetid://9794806401"
 Utilities.BorderMode=Enum.BorderMode.Inset
-
-ClearFog.Name="ClearFog"
-ClearFog.BackgroundColor3=Color3.fromRGB(53,168,255)
-ClearFog.BorderColor3=Color3.fromRGB(0,0,0)
-ClearFog.BorderSizePixel=0
-ClearFog.Position=UDim2.new(0,0,0.223,0)
-ClearFog.Size=UDim2.new(0.95,0,0,20)
+local ClearFog=CreateGui("TextButton","ClearFog",Utilities,UDim2.new(0.95,0,0,20),UDim2.new(0,0,0.223,0),Vector2.new(0.5,0.5),Color3.fromRGB(53,168,255),0,Color3.fromRGB(0,0,0))
 ClearFog.Font=Enum.Font.Code
 ClearFog.Text="Clear Fog"
 ClearFog.TextColor3=Color3.fromRGB(0,0,0)
 ClearFog.TextSize=14.000
-
+local UIListLayout=Instance.new("UIListLayout",Utilities)
 UIListLayout.HorizontalAlignment=Enum.HorizontalAlignment.Center
 UIListLayout.Padding=UDim.new(0,5)
-
-ClearLighting.Name="ClearLighting"
-ClearLighting.BackgroundColor3=Color3.fromRGB(53,168,255)
-ClearLighting.BorderColor3=Color3.fromRGB(0,0,0)
-ClearLighting.BorderSizePixel=0
-ClearLighting.Position=UDim2.new(0,0,0.223,0)
-ClearLighting.Size=UDim2.new(0.95,0,0,20)
+local ClearLighting=CreateGui("TextButton","ClearLighting",Utilities,UDim2.new(0.95,0,0,20),UDim2.new(0,0,0.223,0),Vector2.new(0,0),Color3.fromRGB(53,168,255),0,Color3.fromRGB(0,0,0))
 ClearLighting.Font=Enum.Font.Code
 ClearLighting.Text="Clear Lighting"
 ClearLighting.TextColor3=Color3.fromRGB(0,0,0)
 ClearLighting.TextSize=14.000
-
-Search.Name="Search"
-Search.AnchorPoint=Vector2.new(0.5,0)
-Search.BackgroundColor3=Color3.fromRGB(48,127,255)
-Search.BorderColor3=Color3.fromRGB(48,127,255)
-Search.BorderSizePixel=10
-Search.Position=UDim2.new(0.5,0,0,0)
-Search.Size=UDim2.new(1,0,0.25,0)
+local Search=CreateGui("TextBox","Search",U,UDim2.new(1,0,0.25,0),UDim2.new(0.5,0,0,0),Vector2.new(0.5,0),Color3.fromRGB(48,127,255),10,Color3.fromRGB(48,127,255))
 Search.Font=Enum.Font.Code
 Search.PlaceholderColor3=Color3.fromRGB(59,59,59)
 Search.PlaceholderText="Shortcut Here"
@@ -105,25 +71,11 @@ Search.TextColor3=Color3.fromRGB(0,0,0)
 Search.TextSize=14.000
 Search.TextXAlignment=Enum.TextXAlignment.Left
 Search.BorderMode=Enum.BorderMode.Inset
-
-C.Name="C"
-C.AnchorPoint=Vector2.new(0.5,0.5)
-C.BackgroundColor3=Color3.fromRGB(255,255,255)
-C.BackgroundTransparency=1.000
-C.BorderColor3=Color3.fromRGB(0,0,0)
-C.BorderSizePixel=0
-C.Position=UDim2.new(0.5,0,0.5,0)
-C.Size=UDim2.new(0.33,0,0.95,0)
+local C=CreateGui("Frame","C",Main,UDim2.new(0.33,0,0.95,0),UDim2.new(0.5,0,0.5,0),Vector2.new(0.5,0.5),Color3.fromRGB(255,255,255),0,Color3.fromRGB(0,0,0))
+C.BackgroundTransparency=1
 C.BorderMode=Enum.BorderMode.Inset
-
-Combat.Name="Combat"
+local Combat=CreateGui("ScrollingFrame","Combat",C,UDim2.new(1,0,0.75,0),UDim2.new(0.5,0,1,0),Vector2.new(0.5,1),Color3.fromRGB(165,37,39),0,Color3.fromRGB(255,255,255))
 Combat.Active=true
-Combat.AnchorPoint=Vector2.new(0.5,1)
-Combat.BackgroundColor3=Color3.fromRGB(165,37,39)
-Combat.BorderColor3=Color3.fromRGB(255,255,255)
-Combat.BorderSizePixel=0
-Combat.Position=UDim2.new(0.5,0,1,0)
-Combat.Size=UDim2.new(1,0,0.75,0)
 Combat.BottomImage="rbxassetid://9794806639"
 Combat.MidImage="rbxassetid://9794806504"
 Combat.ScrollBarThickness=5
@@ -132,55 +84,48 @@ Combat.CanvasSize=UDim2.new(0,0,2,0)
 Combat.ScrollBarImageTransparency=.9
 Combat.TopImage="rbxassetid://9794806401"
 Combat.BorderMode=Enum.BorderMode.Inset
-
+local UIListLayout_2=Instance.new("UIListLayout",Combat)
 UIListLayout_2.HorizontalAlignment=Enum.HorizontalAlignment.Center
 UIListLayout_2.Padding=UDim.new(0,5)
-
-ClearLighting_2.Name="ClearLighting"
-ClearLighting_2.BackgroundColor3=Color3.fromRGB(104,23,24)
-ClearLighting_2.BorderColor3=Color3.fromRGB(0,0,0)
-ClearLighting_2.BorderSizePixel=0
-ClearLighting_2.Position=UDim2.new(0,0,0.223,0)
-ClearLighting_2.Size=UDim2.new(0.95,0,0,20)
+local ClearLighting_2=CreateGui("TextButton","ClearLighting",Combat,UDim2.new(0.95,0,0,20),UDim2.new(0,0,0.223,0),Vector2.new(0,0),Color3.fromRGB(104,23,24),0,Color3.fromRGB(0,0,0))
 ClearLighting_2.Font=Enum.Font.Code
 ClearLighting_2.Text="Clear Lighting"
 ClearLighting_2.TextColor3=Color3.fromRGB(0,0,0)
 ClearLighting_2.TextSize=14.000
-
-Highlight.Name="Highlight"
-Highlight.BackgroundColor3=Color3.fromRGB(104,23,24)
-Highlight.BorderColor3=Color3.fromRGB(104,23,24)
-Highlight.BorderSizePixel=2
-Highlight.Position=UDim2.new(0,0,0.223,0)
-Highlight.Size=UDim2.new(0.95,0,0,20)
+local Highlight=CreateGui("TextButton","Highlight",Combat,UDim2.new(0.95,0,0,20),UDim2.new(0,0,0.223,0),Vector2.new(0,0),Color3.fromRGB(104,23,24),2,Color3.fromRGB(104,23,24))
 Highlight.Font=Enum.Font.Code
-Highlight.Text="Highlight Players"
+Highlight.Text="Highlight Players (HL is not RELEASED)"
 Highlight.TextColor3=Color3.fromRGB(0,0,0)
 Highlight.TextSize=14.000
 Highlight.TextXAlignment=Enum.TextXAlignment.Left
 Highlight.BorderMode=Enum.BorderMode.Inset
 
-Bool.Name="Bool"
-Bool.AnchorPoint=Vector2.new(1,0)
-Bool.BackgroundColor3=Color3.fromRGB(162,0,0)
-Bool.BorderColor3=Color3.fromRGB(0,0,0)
-Bool.BorderSizePixel=3
-Bool.Position=UDim2.new(1,0,0,0)
-Bool.Size=UDim2.new(0.1,0,1,0)
-Bool.Font=Enum.Font.SourceSans
-Bool.Text=""
-Bool.TextColor3=Color3.fromRGB(0,0,0)
-Bool.TextSize=1.000
-Bool.TextTransparency=1.000
-Bool.BorderMode=Enum.BorderMode.Inset
+local function CreateBool(Parent,Code1,Code2)
+	local Enabled=false
+	local Bool=CreateGui("TextButton","Bool",Parent,UDim2.new(0.1,0,1,0),UDim2.new(1,0,0,0),Vector2.new(1,0),Color3.fromRGB(162,0,0),3,Color3.fromRGB(0,0,0))
+	Parent.TextSize=14.000
+	Parent.TextXAlignment=Enum.TextXAlignment.Left
+	Parent.BorderMode=Enum.BorderMode.Inset
+	Bool.Font=Enum.Font.SourceSans
+	Bool.Text=""
+	Bool.TextColor3=Color3.fromRGB(0,0,0)
+	Bool.TextSize=1.000
+	Bool.TextTransparency=1.000
+	Bool.BorderMode=Enum.BorderMode.Inset
+	Bool.MouseButton1Click:Connect(function()
+	    if Enabled==false then Enabled=true
+			Bool.BackgroundColor3=Color3.fromRGB(16,162,0)
+			pcall(Code1)
+		elseif Enabled==true then Enabled=false
+			Bool.BackgroundColor3=Color3.fromRGB(162,0,0)
+			pcall(Code2)
+		end
+	end)
+	return Bool
+end
 
-Search_2.Name="Search"
-Search_2.AnchorPoint=Vector2.new(0.5,0)
-Search_2.BackgroundColor3=Color3.fromRGB(165,37,39)
-Search_2.BorderColor3=Color3.fromRGB(165,37,39)
-Search_2.BorderSizePixel=10
-Search_2.Position=UDim2.new(0.5,0,0,0)
-Search_2.Size=UDim2.new(1,0,0.25,0)
+
+local Search_2=CreateGui("TextBox","Search",C,UDim2.new(1,0,0.25,0),UDim2.new(0.5,0,0,0),Vector2.new(0.5,0),Color3.fromRGB(165,37,39),10,Color3.fromRGB(165,37,39))
 Search_2.Font=Enum.Font.Code
 Search_2.PlaceholderColor3=Color3.fromRGB(59,59,59)
 Search_2.PlaceholderText="Shortcut Here"
@@ -189,20 +134,17 @@ Search_2.TextColor3=Color3.fromRGB(0,0,0)
 Search_2.TextSize=14.000
 Search_2.TextXAlignment=Enum.TextXAlignment.Left
 Search_2.BorderMode=Enum.BorderMode.Inset
-
---[[Settings.Name="Settings"
-Settings.Parent=Kevin
-Settings.AnchorPoint=Vector2.new(0.5,0.9)
-Settings.BackgroundColor3=Color3.fromRGB(115,115,115)
-Settings.BackgroundTransparency=1.000
-Settings.BorderColor3=Color3.fromRGB(0,0,0)
-Settings.BorderSizePixel=0
-Settings.Position=UDim2.new(0.5,0,0.5,0)
-Settings.Size=UDim2.new(0.95,0,0.5,0)]]
-
+local ESP=CreateGui("TextButton","ESP",Combat,UDim2.new(0.95,0,0,20),UDim2.new(0,0,0.223,0),Vector2.new(0,0),Color3.fromRGB(104,23,24),2,Color3.fromRGB(104,23,24))
+ESP.Font=Enum.Font.Code
+ESP.Text="ESP plrs"
+ESP.TextColor3=Color3.fromRGB(0,0,0)
+ESP.TextSize=14.000
+ESP.TextXAlignment=Enum.TextXAlignment.Left
+ESP.BorderMode=Enum.BorderMode.Inset
+--[[Settings.Name="Settings";Settings.Parent=Kevin;Settings.AnchorPoint=Vector2.new(0.5,0.9);Settings.BackgroundColor3=Color3.fromRGB(115,115,115);Settings.BackgroundTransparency=1.000;Settings.BorderColor3=Color3.fromRGB(0,0,0);Settings.BorderSizePixel=0;Settings.Position=UDim2.new(0.5,0,0.5,0);Settings.Size=UDim2.new(0.95,0,0.5,0)]]
 UserInputService.InputBegan:Connect(function(Input,yes)
 	if Input.UserInputType==Enum.UserInputType.Keyboard then
-		if Input.KeyCode==Enum.KeyCode.Semicolon or Input.UserInputType==Enum.KeyCode.Colon then
+		if Input.KeyCode==Enum.KeyCode.O then
 			if Enabled==false then
 				Enabled=true
 				Kevin.Enabled=Enabled
@@ -214,127 +156,141 @@ UserInputService.InputBegan:Connect(function(Input,yes)
 	end
 end)
 
-local function CULR_fake_script() -- ClearFog.LocalScript 
-	local script=Instance.new('LocalScript',ClearFog)
-	script.Parent.MouseButton1Click:Connect(function()
-		Lighting.FogEnd=math.huge
-		Lighting.FogStart=math.huge
-		Lighting.FogColor=Color3.new(1,1,1)
-	end)
+local function team(a,b)
+    if a[b]then
+		return true
+	end
 end
-coroutine.wrap(CULR_fake_script)()
-local function XRIEQM_fake_script() -- ClearLighting.LocalScript 
-	local script=Instance.new('LocalScript',ClearLighting)
-	script.Parent.MouseButton1Click:Connect(function()
-		Lighting.FogEnd=math.huge
-		Lighting.FogStart=math.huge
-		Lighting.FogColor=Color3.new(1,1,1)
-		Lighting.TimeOfDay="12:00:00"
-		Lighting.ClockTime=12
-		Lighting.GeographicLatitude=12
-		Lighting.ExposureCompensation=0
+
+ClearFog.MouseButton1Click:Connect(function()
+	Lighting.FogEnd=math.huge
+	Lighting.FogStart=math.huge
+	Lighting.FogColor=Color3.new(1,1,1)
+end)
+
+ClearLighting.MouseButton1Click:Connect(function()
+	Lighting.FogEnd=math.huge
+	Lighting.FogStart=math.huge
+	Lighting.FogColor=Color3.new(1,1,1)
+	Lighting.TimeOfDay="12:00:00"
+	Lighting.ClockTime=12
+	Lighting.GeographicLatitude=12
+	Lighting.ExposureCompensation=0
+end)
+
+ClearLighting_2.MouseButton1Click:Connect(function()
+	Lighting.FogEnd=math.huge
+	Lighting.FogStart=math.huge
+	Lighting.FogColor=Color3.new(1,1,1)
+	Lighting.TimeOfDay="12:00:00"
+	Lighting.ClockTime=12
+	Lighting.GeographicLatitude=12
+	Lighting.ExposureCompensation=0
+end)
+
+CreateBool(Highlight,
+    function()
+        for _,Player in pairs(game.Players:GetPlayers())do
+        	--if Player.Name~=LocalPlayer.Name then
+        		local TeamColor=nil
+        		local char=Player.Character or Player.CharacterAdded:Wait()
+        		if char then
+        			for _,v in pairs(char:GetChildren())do
+        				if v:IsA('BasePart')then
+        					local hl=Instance.new('Highlight',v)
+        					hl.Name='ESP'
+        					hl.Enabled=true
+        					hl.FillTransparency=.75
+        					hl.OutlineTransparency=.75
+        					if TeamColor~=nil then
+        					else
+        						hl.FillColor=C3.new(1,1,1)
+        						hl.OutlineColor=C3.new(1,1,1)
+        					end
+        				end
+        				if v:IsA("Accessory")then
+        					local Handle=v:FindFirstChild("Handle")
+        					if Handle then
+        						local hl=Instance.new('Highlight',Handle)
+        						hl.Name='ESP'
+        						hl.Enabled=true
+        						hl.FillTransparency=.75
+        						hl.OutlineTransparency=.75
+        						if TeamColor~=nil then
+        						else
+        							hl.FillColor=C3.new(1,1,1)
+        							hl.OutlineColor=C3.new(1,1,1)
+        						end
+        					end
+        				end
+        			end
+        		end
+        	--end
+        end
+	end,
+	function()
+        for _,Player in pairs(game.Players:GetPlayers())do
+        	local char=Player.Character or Player.CharacterAdded:Wait()
+        	if char then
+        		for _,BasePart in pairs(char:GetChildren())do
+        			if BasePart:IsA('BasePart')then
+        				for _,Part in pairs(BasePart:GetChildren())do
+        					if Part:IsA("Highlight")then
+        						Part:Destroy()
+        					end
+        				end
+        			elseif BasePart:IsA("Accessory")then
+        				local Handle=BasePart:FindFirstChild("Handle")
+        				if Handle then
+        					for _,E in pairs(Handle:GetChildren())do
+        						if E:IsA('Highlight')then
+        							E:Destroy()
+        						end
+        					end
+        				end
+        			end
+        		end
+        	end
+        end
 	end)
-end
-coroutine.wrap(XRIEQM_fake_script)()
-local function UPVL_fake_script() -- ClearLighting_2.LocalScript 
-	local script=Instance.new('LocalScript',ClearLighting_2)
-	
-	script.Parent.MouseButton1Click:Connect(function()
-		Lighting.FogEnd=math.huge
-		Lighting.FogStart=math.huge
-		Lighting.FogColor=Color3.new(1,1,1)
-		Lighting.TimeOfDay="12:00:00"
-		Lighting.ClockTime=12
-		Lighting.GeographicLatitude=12
-		Lighting.ExposureCompensation=0
-	end)
-end
-coroutine.wrap(UPVL_fake_script)()
-local function BSGZL_fake_script() -- Bool.LocalScript 
-	local script=Instance.new('LocalScript',Bool)
-	local Enabled=false
-	local Button=script.Parent
-	Button.MouseButton1Click:Connect(function()
-		if Enabled==false then Enabled=true
-			Button.BackgroundColor3=Color3.fromRGB(16,162,0)
-			for _,Player in pairs(game.Players:GetPlayers())do
-				if Player.Name~=LocalPlayer.Name then
-			    	local TeamColor=nil
-			    	if pcall(team(Player,'TeamColor'))then
-			    		TeamColor=Player.TeamColor
-			    	end
-			    	local char=Player.Character or Player.CharacterAdded:Wait()
-			    	if char then
-			    		for _,v in pairs(char:GetChildren())do
-			    			if v:IsA('BasePart')then
-			    				local hl=Instance.new('Highlight',v)
-			    				hl.Name='ESP'
-			    				hl.Enabled=true
-			    				hl.FillTransparency=.75
-			    				hl.OutlineTransparency=.75
-			    				if TeamColor~=nil then
-			    					hl.FillColor=C3.fromRGB(TeamColor)
-			    					hl.OutlineColor=C3.fromRGB(TeamColor)
-			    				else
-			    					hl.FillColor=C3.new(1,1,1)
-			    					hl.OutlineColor=C3.new(1,1,1)
-			    				end
-			    			elseif v:IsA("Accessory")then
-			    				local Handle=v:FindFirstChild("Handle")
-			    				if Handle then
-			    					local hl=Instance.new('Highlight',Handle)
-			    					hl.Name='ESP'
-			    					hl.Enabled=true
-			    					hl.FillTransparency=.75
-			    					hl.OutlineTransparency=.75
-			    					if TeamColor~=nil then
-			    						hl.FillColor=C3.fromRGB(TeamColor)
-			    						hl.OutlineColor=C3.fromRGB(TeamColor)
-			    					else
-			    						hl.FillColor=C3.new(1,1,1)
-			    						hl.OutlineColor=C3.new(1,1,1)
-			    					end
-			    				end
-			    			end
-			    		end
-			    	end
-			    end
-			end
-		elseif Enabled==true then Enabled=false
-			Button.BackgroundColor3=Color3.fromRGB(162,0,0)
-			for _,Player in pairs(game.Players:GetPlayers())do
-				local char=Player.Character or Player.CharacterAdded:Wait()
-				if char then
-					for _,BasePart in pairs(char:GetChildren())do
-						if BasePart:IsA('BasePart')then
-							for _,Part in pairs(BasePart:GetChildren())do
-								if Part:IsA("Highlight")and Part.Name=='ESP'then
-									Part:Destroy()
-								end
-							end
-						elseif BasePart:IsA("Accessory")then
-							local Handle=BasePart:FindFirstChild("Handle")
-							if Handle then
-								for _,E in pairs(Handle:GetChildren())do
-									if E:IsA('Highlight')and E.Name=='ESP'then
-										E:Destroy()
-									end
-								end
-							end
-						end
-					end
-				end
+CreateBool(ESP,
+    function()
+	    for _,Player in pairs(game.Players:GetPlayers())do
+	    	if Player.Name~=LocalPlayer.Name then
+	    		local TeamColor=Player.Team.TeamColor
+				--pcall(team(Player))
+	    		local char=Player.Character or Player.CharacterAdded:Wait()
+	    		if char then
+	    			for _,v in pairs(char:GetChildren())do
+	    				if v:IsA('BasePart')then
+	    					local sb=Instance.new('BoxHandleAdornment',game.CoreGui)
+	    					sb.Name=Player.Name..'ESP'
+							sb.Size=v.Size
+	    					sb.Adornee=v
+	    					sb.Transparency=.75
+							sb.Color3=C3.fromRGB(13,105,172)
+							sb.ZIndex=10
+							sb.AdornCullingMode=Enum.AdornCullingMode.Automatic
+							sb.AlwaysOnTop=true
+	    					if TeamColor~=nil then
+                                sb.Color3=C3.fromRGB(TeamColor.r*255,TeamColor.g*255,TeamColor.b*255)
+	    					else
+	    						sb.Color3=C3.new(1,1,1)
+	    						--sb.SurfaceTransparency=C3.new(1,1,1)
+	    					end
+	    				end
+	    			end
+	    		end
 			end
 		end
-	end)
-end
-coroutine.wrap(BSGZL_fake_script)()
-local function UUGPP_fake_script() -- Highlight.LocalScript 
-	local script=Instance.new('LocalScript',Highlight)
-	local Enabled=false
-	local Button=script.Parent
-	Button.MouseButton2Click:Connect(function()
-		
-	end)
-end
-coroutine.wrap(UUGPP_fake_script)()
+	end,
+	function()
+		for _,ESP in pairs(game.CoreGui:GetChildren())do
+			if ESP:IsA("BoxHandleAdornment") and string.find(ESP.Name,'ESP') then
+				ESP:Destroy()
+			end
+		end
+	end
+)
+Highlight.MouseButton2Click:Connect(function()
+end)
