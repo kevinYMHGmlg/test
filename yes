@@ -252,56 +252,53 @@ end
 coroutine.wrap(UPVL_fake_script)()
 local function BSGZL_fake_script() -- Bool.LocalScript 
 	local script=Instance.new('LocalScript',Bool)
-	local function team(a,b)
-		if a[b]then
-			return true
-		end
-	end
 	local Enabled=false
 	local Button=script.Parent
 	Button.MouseButton1Click:Connect(function()
 		if Enabled==false then Enabled=true
 			Button.BackgroundColor3=Color3.fromRGB(16,162,0)
 			for _,Player in pairs(game.Players:GetPlayers())do
-				local TeamColor=nil
-				if pcall(team(Player,'TeamColor'))then
-					TeamColor=Player.TeamColor
-				end
-				local char=Player.Character or Player.CharacterAdded:Wait()
-				if char then
-					for _,v in pairs(char:GetChildren())do
-						if v:IsA('BasePart')then
-							local hl=Instance.new('Highlight',v)
-							hl.Name='ESP'
-							hl.Enabled=true
-							hl.FillTransparency=.75
-							hl.OutlineTransparency=.75
-							if TeamColor~=nil then
-								hl.FillColor=C3.fromRGB(TeamColor)
-								hl.OutlineColor=C3.fromRGB(TeamColor)
-							else
-								hl.FillColor=C3.new(1,1,1)
-								hl.OutlineColor=C3.new(1,1,1)
-							end
-						elseif v:IsA("Accessory")then
-							local Handle=v:FindFirstChild("Handle")
-							if Handle then
-								local hl=Instance.new('Highlight',Handle)
-								hl.Name='ESP'
-								hl.Enabled=true
-								hl.FillTransparency=.75
-								hl.OutlineTransparency=.75
-								if TeamColor~=nil then
-									hl.FillColor=C3.fromRGB(TeamColor)
-									hl.OutlineColor=C3.fromRGB(TeamColor)
-								else
-									hl.FillColor=C3.new(1,1,1)
-									hl.OutlineColor=C3.new(1,1,1)
-								end
-							end
-						end
-					end
-				end
+				if Player.Name~=LocalPlayer.Name then
+			    	local TeamColor=nil
+			    	if pcall(team(Player,'TeamColor'))then
+			    		TeamColor=Player.TeamColor
+			    	end
+			    	local char=Player.Character or Player.CharacterAdded:Wait()
+			    	if char then
+			    		for _,v in pairs(char:GetChildren())do
+			    			if v:IsA('BasePart')then
+			    				local hl=Instance.new('Highlight',v)
+			    				hl.Name='ESP'
+			    				hl.Enabled=true
+			    				hl.FillTransparency=.75
+			    				hl.OutlineTransparency=.75
+			    				if TeamColor~=nil then
+			    					hl.FillColor=C3.fromRGB(TeamColor)
+			    					hl.OutlineColor=C3.fromRGB(TeamColor)
+			    				else
+			    					hl.FillColor=C3.new(1,1,1)
+			    					hl.OutlineColor=C3.new(1,1,1)
+			    				end
+			    			elseif v:IsA("Accessory")then
+			    				local Handle=v:FindFirstChild("Handle")
+			    				if Handle then
+			    					local hl=Instance.new('Highlight',Handle)
+			    					hl.Name='ESP'
+			    					hl.Enabled=true
+			    					hl.FillTransparency=.75
+			    					hl.OutlineTransparency=.75
+			    					if TeamColor~=nil then
+			    						hl.FillColor=C3.fromRGB(TeamColor)
+			    						hl.OutlineColor=C3.fromRGB(TeamColor)
+			    					else
+			    						hl.FillColor=C3.new(1,1,1)
+			    						hl.OutlineColor=C3.new(1,1,1)
+			    					end
+			    				end
+			    			end
+			    		end
+			    	end
+			    end
 			end
 		elseif Enabled==true then Enabled=false
 			Button.BackgroundColor3=Color3.fromRGB(162,0,0)
@@ -334,11 +331,6 @@ end
 coroutine.wrap(BSGZL_fake_script)()
 local function UUGPP_fake_script() -- Highlight.LocalScript 
 	local script=Instance.new('LocalScript',Highlight)
-	local function team(a,b)
-		if a[b]then
-			return true
-		end
-	end
 	local Enabled=false
 	local Button=script.Parent
 	Button.MouseButton2Click:Connect(function()
